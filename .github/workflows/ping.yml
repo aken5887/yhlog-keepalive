@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Ping yhlog.xyz
         run: |
-          CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 120 https://yhlog.xyz/api/config)
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 120 https://yhlog.xyz)
           echo "HTTP status: $CODE"
           if [ "$CODE" = "000" ] || [ "$CODE" -ge 500 ]; then
             echo "Site is down or unreachable"
