@@ -2,7 +2,8 @@ name: Keep yhlog.xyz awake
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # every 10 minutes (UTC)
+  #  - cron: '*/10 * * * *'  # every 10 minutes (UTC)
+  - cron: '3,13,23,33,43,53 * * * *'
   workflow_dispatch:  # manual run for testing
 
 jobs:
