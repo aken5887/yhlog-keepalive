@@ -1,0 +1,20 @@
+name: Keep yhlog.xyz awake
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # every 10 minutes (UTC)
+  workflow_dispatch:  # manual run for testing
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping yhlog.xyz
+        run: |
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 120 https://yhlog.xyz/api/config)
+          echo "HTTP status: $CODE"
+          if [ "$CODE" = "000" ] || [ "$CODE" -ge 500 ]; then
+            echo "Site is down or unreachable"
+            exit 1
+          fi
+          echo "Site is awake"
